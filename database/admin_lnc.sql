@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2020 at 02:09 PM
+-- Generation Time: Dec 27, 2020 at 10:45 PM
 -- Server version: 10.4.16-MariaDB
 -- PHP Version: 7.4.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `osms_db`
+-- Database: `admin_lnc`
 --
 
 -- --------------------------------------------------------
@@ -39,30 +39,7 @@ CREATE TABLE `adminlogin_tb` (
 --
 
 INSERT INTO `adminlogin_tb` (`a_login_id`, `a_name`, `a_email`, `a_password`) VALUES
-(1, 'Admin Kumar', 'admin@gmail.com', 'admin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `assignwork_tb`
---
-
-CREATE TABLE `assignwork_tb` (
-  `rno` int(11) NOT NULL,
-  `request_id` int(11) NOT NULL,
-  `request_info` text COLLATE utf8_bin NOT NULL,
-  `request_desc` text COLLATE utf8_bin NOT NULL,
-  `requester_name` varchar(60) COLLATE utf8_bin NOT NULL,
-  `requester_add1` text COLLATE utf8_bin NOT NULL,
-  `requester_add2` text COLLATE utf8_bin NOT NULL,
-  `requester_city` varchar(60) COLLATE utf8_bin NOT NULL,
-  `requester_state` varchar(60) COLLATE utf8_bin NOT NULL,
-  `requester_zip` int(11) NOT NULL,
-  `requester_email` varchar(60) COLLATE utf8_bin NOT NULL,
-  `requester_mobile` bigint(11) NOT NULL,
-  `assign_tech` varchar(60) COLLATE utf8_bin NOT NULL,
-  `assign_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+(1, 'admin', 'admin@admin.com', 'admin@nova');
 
 -- --------------------------------------------------------
 
@@ -71,31 +48,20 @@ CREATE TABLE `assignwork_tb` (
 --
 
 CREATE TABLE `complete_order` (
-  `pid` int(11) DEFAULT NULL,
-  `pname` varchar(55) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `bname` varchar(55) NOT NULL,
   `pdop` date NOT NULL,
-  `ptotal` int(11) NOT NULL,
+  `pitems` varchar(800) NOT NULL,
   `tableno` int(11) NOT NULL,
-  `pselingcost` int(11) NOT NULL,
-  `sum` int(11) NOT NULL
+  `totalbill` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `customer_tb`
+-- Dumping data for table `complete_order`
 --
 
-CREATE TABLE `customer_tb` (
-  `custid` int(11) NOT NULL,
-  `custname` varchar(60) COLLATE utf8_bin NOT NULL,
-  `custadd` varchar(60) COLLATE utf8_bin NOT NULL,
-  `cpname` varchar(60) COLLATE utf8_bin NOT NULL,
-  `cpquantity` int(11) NOT NULL,
-  `cpeach` int(11) NOT NULL,
-  `cptotal` int(11) NOT NULL,
-  `cpdate` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+INSERT INTO `complete_order` (`pid`, `bname`, `pdop`, `pitems`, `tableno`, `totalbill`) VALUES
+(1, 'testbuyer', '2020-12-27', '[{\"ITEM\":\" chicken\",\"PRICE\":\" 250\",\"Quantity\":\" 2\"},{\"ITEM\":\" pulaw\",\"PRICE\":\" 120\",\"Quantity\":\" 2\"},{\"ITEM\":\" butter chicken\",\"PRICE\":\" 350\",\"Quantity\":\" 1\"}]', 1, 1090);
 
 -- --------------------------------------------------------
 
@@ -116,9 +82,12 @@ CREATE TABLE `menu_tb` (
 --
 
 INSERT INTO `menu_tb` (`id`, `pname`, `pdop`, `poriginalcost`, `pava`) VALUES
-(1, 'chicken', '2020-12-17', 100, 2),
-(6, 'chiken legpiece', '2020-12-23', 100, 100),
-(7, 'salad 99', '2020-12-23', 12, 10);
+(1, 'chicken', '2020-12-27', 250, 100),
+(2, 'pasta', '2020-12-27', 50, 100),
+(3, 'roll', '2020-12-27', 80, 30),
+(4, 'butter chicken', '2020-12-27', 350, 50),
+(5, 'rice', '2020-12-27', 80, 100),
+(6, 'pulaw', '2020-12-27', 120, 100);
 
 -- --------------------------------------------------------
 
@@ -164,26 +133,14 @@ CREATE TABLE `staff_tb` (
   `empEmail` varchar(60) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `submitrequest_tb`
+-- Dumping data for table `staff_tb`
 --
 
-CREATE TABLE `submitrequest_tb` (
-  `request_id` int(11) NOT NULL,
-  `request_info` text COLLATE utf8_bin NOT NULL,
-  `request_desc` text COLLATE utf8_bin NOT NULL,
-  `requester_name` varchar(60) COLLATE utf8_bin NOT NULL,
-  `requester_add1` text COLLATE utf8_bin NOT NULL,
-  `requester_add2` text COLLATE utf8_bin NOT NULL,
-  `requester_city` varchar(60) COLLATE utf8_bin NOT NULL,
-  `requester_state` varchar(60) COLLATE utf8_bin NOT NULL,
-  `requester_zip` int(11) NOT NULL,
-  `requester_email` varchar(60) COLLATE utf8_bin NOT NULL,
-  `requester_mobile` bigint(11) NOT NULL,
-  `request_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+INSERT INTO `staff_tb` (`empid`, `empName`, `empCity`, `empMobile`, `empEmail`) VALUES
+(1, 'worker1', 'jorhat', 7638011234, 'work2test@test.com'),
+(2, 'cook', 'jrht', 1234567890, ''),
+(3, 'owner', 'jrht', 123456789, 'admin@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -197,6 +154,15 @@ CREATE TABLE `table_available` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `table_available`
+--
+
+INSERT INTO `table_available` (`id`, `No`) VALUES
+(1, 1),
+(2, 2),
+(3, 3);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -207,16 +173,10 @@ ALTER TABLE `adminlogin_tb`
   ADD PRIMARY KEY (`a_login_id`);
 
 --
--- Indexes for table `assignwork_tb`
+-- Indexes for table `complete_order`
 --
-ALTER TABLE `assignwork_tb`
-  ADD PRIMARY KEY (`rno`);
-
---
--- Indexes for table `customer_tb`
---
-ALTER TABLE `customer_tb`
-  ADD PRIMARY KEY (`custid`);
+ALTER TABLE `complete_order`
+  ADD PRIMARY KEY (`pid`);
 
 --
 -- Indexes for table `menu_tb`
@@ -243,12 +203,6 @@ ALTER TABLE `staff_tb`
   ADD PRIMARY KEY (`empid`);
 
 --
--- Indexes for table `submitrequest_tb`
---
-ALTER TABLE `submitrequest_tb`
-  ADD PRIMARY KEY (`request_id`);
-
---
 -- Indexes for table `table_available`
 --
 ALTER TABLE `table_available`
@@ -265,28 +219,22 @@ ALTER TABLE `adminlogin_tb`
   MODIFY `a_login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `assignwork_tb`
+-- AUTO_INCREMENT for table `complete_order`
 --
-ALTER TABLE `assignwork_tb`
-  MODIFY `rno` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `customer_tb`
---
-ALTER TABLE `customer_tb`
-  MODIFY `custid` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `complete_order`
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `menu_tb`
 --
 ALTER TABLE `menu_tb`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `orders_tb`
 --
 ALTER TABLE `orders_tb`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `requesterlogin_tb`
@@ -298,19 +246,13 @@ ALTER TABLE `requesterlogin_tb`
 -- AUTO_INCREMENT for table `staff_tb`
 --
 ALTER TABLE `staff_tb`
-  MODIFY `empid` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `submitrequest_tb`
---
-ALTER TABLE `submitrequest_tb`
-  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `empid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `table_available`
 --
 ALTER TABLE `table_available`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
