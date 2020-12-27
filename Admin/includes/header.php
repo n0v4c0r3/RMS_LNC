@@ -6,7 +6,7 @@ error_reporting(0);
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> LN</title>
+        <title> LN CAFE </title>
 
         <link rel="stylesheet" href="../css/all.min.css">
         <link
@@ -16,6 +16,8 @@ error_reporting(0);
             crossorigin="anonymous">
 
         <link rel="stylesheet" href="../css/custom1.css">
+        
+
         <!------ Include the above in your HEAD tag ---------->
     </head>
     <body>
@@ -46,6 +48,7 @@ error_reporting(0);
             </p>
 
             <ul class="nav flex-column bg-white mb-0 p-3">
+                
 
                 <li class="nav-item py-3">
                     <a href="dashboard.php" class="nav-link text-dark  <?php if(PAGE == 'dashboard') { echo 'active'; } ?>">
@@ -72,18 +75,26 @@ error_reporting(0);
                         MENU
                     </a>
                 </li>
-                <li class="nav-item py-3">
+                <li class="nav-item py-3 <?php if(PAGE == 'totalorder') { echo 'active'; } ?>">
+                    <a href="total.php" class="nav-link text-dark">
+                        <i class="fa fa-download mr-3 text-primary fa-fw" ></i>
+                        Bill 
+                    </a>
+                </li>
+                <li class="nav-item py-3 <?php if(PAGE == 'staff') { echo 'active'; } ?>">
                     <a href="staff.php" class="nav-link text-dark">
                         <i class="fa fa-users mr-3 text-primary fa-fw" ></i>
                         STAFF MEMBERS
                     </a>
                 </li>
-                <li class="nav-item py-3">
+                
+                <li class="nav-item py-3 <?php if(PAGE == 'changepass') { echo 'active'; } ?>">
                     <a href="changepass.php" class="nav-link text-dark">
                         <i class="fa fa-key mr-3 text-primary fa-fw" aria-hidden="true"></i>
                         CHANGE PASSWORD
                     </a>
                 </li>
+                
                 <li class="nav-item py-3">
                     <a href="../logout.php" class="nav-link text-dark">
                         <i class="fa fa-sign-out-alt mr-3 text-primary fa-fw" aria-hidden="true"></i>
@@ -94,9 +105,7 @@ error_reporting(0);
             </ul>
 
         </div>
-       
 
-        <!-- sidebarend -->
 
 
 

@@ -72,6 +72,7 @@ if(isset($_REQUEST['psubmit'])){
       evt.preventDefault();
     }
   }
+  document.getElementById('pdop').valueAsDate = new Date();
 </script>
 <?php
 include('includes/footer.php'); 

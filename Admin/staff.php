@@ -1,6 +1,6 @@
 <?php
-define('TITLE', 'Technician');
-define('PAGE', 'technician');
+define('TITLE', 'Staff');
+define('PAGE', 'staff');
 include('includes/header.php'); 
 include('../dbConnection.php');
 session_start();

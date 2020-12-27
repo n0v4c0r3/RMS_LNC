@@ -9,103 +9,92 @@ session_start();
  } else {
   echo "<script> location.href='login.php'; </script>";
  }
- $sql = "SELECT max(request_id) FROM submitrequest_tb";
+ $sql = "SELECT count(pid) FROM complete_order";
  $result = $conn->query($sql);
  $row = mysqli_fetch_row($result);
- $submitrequest = $row[0];
+ $torders = $row[0];
 
- $sql = "SELECT max(request_id) FROM assignwork_tb";
+ $sql = "SELECT sum(totalbill) FROM complete_order";
  $result = $conn->query($sql);
  $row = mysqli_fetch_row($result);
- $assignwork = $row[0];
+ $revnue = $row[0];
 
- $sql = "SELECT * FROM technician_tb";
+ $sql = "SELECT * FROM staff_tb";
  $result = $conn->query($sql);
- $totaltech = $result->num_rows;
+ $emplpye = $result->num_rows;
+
+ $sql = "SELECT pid,pdop FROM complete_order ORDER BY pid";
+ $result = $conn->query($sql);
+ 
+ $datareturn = array();
+ foreach ($result as $row){
+     $datareturn[] =$row;
+ }
+
+ print json_encode($datareturn);
 
 ?>
 <div class="page-content p-5 shadow-sm px-4" id="content">
     <div class="row mx-5 text-center">
         <div class="col-sm-4 mt-5">
-            <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-                <div class="card-header">Orders Received</div>
+            <div
+                class="card text-white bg-success mb-3"
+                style="max-width: 18rem; border-radius:5px; border: 0; background: rgb(119,96,150);
+background: linear-gradient(90deg, rgba(119,96,150,1) 0%, rgba(111,130,149,1) 100%);">
+                <div class="card-header">TOTAL ORDERS</div>
                 <div class="card-body">
                     <h4 class="card-title">
-                        <?php echo $submitrequest; ?>
+                        <?php echo $torders; ?>
                     </h4>
-                    <a class="btn text-white" href="request.php">View</a>
+                    <a class="btn text-white" href="total.php">View</a>
                 </div>
             </div>
         </div>
         <div class="col-sm-4 mt-5">
-            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div
+                class="card text-white bg-dark mb-3"
+                style="max-width: 18rem; border-radius:5px; border: 0; background: rgb(64,65,255);
+background: linear-gradient(90deg, rgba(64,65,255,1) 0%, rgba(57,157,255,1) 100%);">
                 <div class="card-header">Total Revenue</div>
                 <div class="card-body">
                     <h4 class="card-title">
-                        <?php echo $assignwork; ?>
+                        <?php echo $revnue; ?>
                     </h4>
-                    <a class="btn text-white" href="work.php">View</a>
+                    <a class="btn text-white" href="#bar-graph">View</a>
                 </div>
             </div>
         </div>
         <div class="col-sm-4 mt-5">
-            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+            <div
+                class="card text-white bg-primary mb-3"
+                style="max-width: 18rem;  border-radius:5px; border: 0; background: rgb(213,0,240);
+background: linear-gradient(90deg, rgba(213,0,240,1) 0%, rgba(166,0,255,1) 100%);">
                 <div class="card-header">No. of Employee</div>
                 <div class="card-body">
                     <h4 class="card-title">
-                        <?php echo $totaltech; ?>
+                        <?php echo $emplpye; ?>
                     </h4>
-                    <a class="btn text-white" href="technician.php">View</a>
+                    <a class="btn text-white" href="staff.php">View</a>
                 </div>
             </div>
         </div>
     </div>
-    <canvas id="myChart" width="400" height="400"></canvas>
+    
+            <canvas id="bar-graph"  style=" width:auto; max-height:720px;"></canvas>
+       
 </div>
-    <?php
+
+
+<?php
 include('includes/footer.php'); 
 ?>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
-        integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
-        crossorigin="anonymous"></script>
-
-        <script>
-var ctx = document.getElementById('myChart');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
+<script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+            integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+            crossorigin="anonymous"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+    integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+    crossorigin="anonymous"></script>
 </script>
+<script src="../js/chartdata.js"></script>

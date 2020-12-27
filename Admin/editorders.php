@@ -12,7 +12,7 @@ session_start();
  // update
  if(isset($_REQUEST['pupdate'])){
   // Checking for Empty Fields
-  if(($_REQUEST['pname'] == "") || ($_REQUEST['pdop'] == "") || ($_REQUEST['pqty'] == "") ||  ($_REQUEST['ptable'] == "") ||  ($_REQUEST['peach'] == "")){
+  if(($_REQUEST['pname'] == "") || ($_REQUEST['pqty'] == "") ||  ($_REQUEST['ptable'] == "")){
    // msg displayed if required field missing
    $msg = '<div class="alert alert-warning col-sm-6 ml-5 mt-2" role="alert"> Fill All Fileds </div>';
   } else {
@@ -21,10 +21,8 @@ session_start();
     $pname = $_REQUEST['pname'];
     $pdop = $_REQUEST['pdop'];
     $ptable = $_REQUEST['ptable'];
-    $peach = $_REQUEST['peach'];
     $pqty = $_REQUEST['pqty'];
-    $psum = $_REQUEST['ptotalcost'];
-  $sql = "UPDATE orders_tb SET pname = '$pname', pdop = '$pdop', tableno = '$ptable', psellingcost = '$peach',  pqty = '$pqty',  psum = '$psum' WHERE pid = '$pid'";
+  $sql = "UPDATE orders_tb SET pname = '$pname', pdop = '$pdop', tableno = '$ptable',  pqty = '$pqty' WHERE pid = '$pid'";
     if($conn->query($sql) == TRUE){
      // below msg display on form submit success
      $msg = '<div class="alert alert-success col-sm-6 ml-5 mt-2" role="alert"> Updated Successfully </div>';
@@ -52,7 +50,16 @@ $sql = "SELECT * FROM orders_tb WHERE pid = {$_REQUEST['id']}";
     </div>
     <div class="form-group">
       <label for="pname">Name</label>
-      <input type="text" class="form-control" id="pname" name="pname" value="<?php if(isset($row['pname'])) {echo $row['pname']; }?>">
+      <!-- <input type="text" class="form-control" id="pname" name="pname" value="<?php if(isset($row['pname'])) {echo $row['pname']; }?>"> -->
+      <select id="pname" name="pname">
+        <?php  
+        $itemsql = "select * from `menu_tb`";
+        $data = $conn->query($itemsql);
+        while($row = $data->fetch_assoc()){
+        echo '<option name="itm">'. $row["pname"].'</option>'; 
+        } 
+        ?>
+      </select>
     </div>
     <div class="form-group">
       <label for="pdop">DOP</label>
@@ -65,19 +72,21 @@ $sql = "SELECT * FROM orders_tb WHERE pid = {$_REQUEST['id']}";
     </div>
     <div class="form-group">
       <label for="ptable">Table NO</label>
-      <input type="number" class="form-control" id="ptable" name="ptable" value="<?php if(isset($row['tableno'])) {echo $row['tableno']; }?>">
+      <!-- <input type="number" class="form-control" id="ptable" name="ptable" value="<?php if(isset($row['tableno'])) {echo $row['tableno']; }?>"> -->
+      <select id="pname" name="ptable">
+        <?php  
+        $itemsql = "select * from `table_available`";
+        $data = $conn->query($itemsql);
+        while($row = $data->fetch_assoc()){
+          echo '<option>'. $row["No"].'</option>';
+        }
+        ?>
+      </select>
     </div>
-    <div class="form-group">
-      <label for="peach">Price Each</label>
-      <input type="text" class="form-control" id="peach" name="peach" value="<?php if(isset($row['psellingcost'])) {echo $row['psellingcost']; }?>">
-    </div>
-    <div class="form-group">
-      <label for="psellingcost">TOTAL PRICE</label>
-      <input type=text class="form-control" id="ptotalcost" name="ptotalcost"  readonly="readonly" >
-    </div>
+    
 
     <div class="text-center">
-      <button type="submit" class="btn btn-danger" id="pupdate" name="pupdate">Update</button>
+      <button type="submit" class="btn btn-primary" id="pupdate" name="pupdate">Update</button>
       <a href="orders.php" class="btn btn-secondary">Close</a>
     </div>
     <?php if(isset($msg)) {echo $msg; } ?>
@@ -102,6 +111,7 @@ $sql = "SELECT * FROM orders_tb WHERE pid = {$_REQUEST['id']}";
                $('#ptotalcost').val(value1 * value2);
             });
          });
+         document.getElementById('pdop').valueAsDate = new Date();
 </script>
 <?php
 include('includes/footer.php'); 

@@ -11,7 +11,7 @@ session_start();
  }
 if(isset($_REQUEST['psubmit'])){
  // Checking for Empty Fields
- if(($_REQUEST['pname'] == "") || ($_REQUEST['pdop'] == "") || ($_REQUEST['pqty'] == "") || ($_REQUEST['tableno'] == "") || ($_REQUEST['psellingcost'] == "")){
+ if(($_REQUEST['pname'] == "") || ($_REQUEST['pdop'] == "") || ($_REQUEST['pqty'] == "") || ($_REQUEST['tableno'] == "")){
   // msg displayed if required field missing
   $msg = '<div class="alert alert-warning col-sm-6 ml-5 mt-2" role="alert"> Fill All Fileds </div>';
  } else {
@@ -21,9 +21,16 @@ if(isset($_REQUEST['psubmit'])){
   $pqty = $_REQUEST['pqty'];
   $tableN = $_REQUEST['tableno'];
   $psellingcost = $_REQUEST['psellingcost'];
-  $sumcost = $_REQUEST['ptotalcost'];
+  
+  
+  $sql_price =  "SELECT * from menu_tb where pname = '{$pname}'";
+  $data = $conn->query($sql_price);
+  $price_data = $data->fetch_assoc();
+  $price = $price_data["poriginalcost"];
 
-   $sql = "INSERT INTO `orders_tb`( `pname`, `pdop`, `pqty`, `tableno`, `psellingcost` ,`psum`) VALUES ('$pname', '$pdop', '$pqty' , '$tableN', '$psellingcost', '$sumcost' )";
+  $psum = $pqty*$price;
+
+   $sql = "INSERT INTO `orders_tb`( `pname`, `pdop`, `pqty`, `tableno`, `psellingcost`, `psum`) VALUES ('$pname', '$pdop', '$pqty' , '$tableN', '$price',  '$psum' )";
    
   
 
@@ -49,10 +56,9 @@ if(isset($_REQUEST['psubmit'])){
         $itemsql = "select * from `menu_tb`";
         $data = $conn->query($itemsql);
         while($row = $data->fetch_assoc()){
-          echo '<option>'. $row["pname"].'</option>';
-        }
+        echo '<option name="itm">'. $row["pname"].'</option>'; 
+        } 
         ?>
-        
       </select>
       
     </div>
@@ -65,7 +71,6 @@ if(isset($_REQUEST['psubmit'])){
       <label for="pqty">quantity</label>
       <input type="text" class="form-control" id="pqty" name="pqty" onkeypress="isInputNumber(event)">
     </div>
-
     <div class="form-group">
       <label for="poriginalcost">Table No</label><br>
       <!-- <input type="text" class="form-control" id="tableno" name="tableno" onkeypress="isInputNumber(event)"> -->
@@ -77,23 +82,13 @@ if(isset($_REQUEST['psubmit'])){
           echo '<option>'. $row["No"].'</option>';
         }
         ?>
-        
       </select>
-
     </div>
-
-    <div class="form-group">
-      <label for="psellingcost">Selling Cost Each</label>
-      <input type="text" class="form-control" id="psellingcost" name="psellingcost" onkeypress="isInputNumber(event)">
-    </div>
-    <div class="form-group">
-      <label for="psellingcost">TOTAL PRICE</label>
-      <input type=text class="form-control" id="ptotalcost" name="ptotalcost"  readonly="readonly" >
-    </div>
-    <div class="text-center">
-      <button type="submit" class="btn btn-danger" id="psubmit" name="psubmit">Submit</button>
-      <a href="orders.php" class="btn btn-secondary">Close</a>
-    </div>
+    
+  <div class="text-center">
+    <button type="submit" class="btn btn-success px-5" id="psubmit" name="psubmit">Submit</button>
+    <a href="orders.php" class="btn btn-primary">Close</a>
+  </div>
     <?php if(isset($msg)) {echo $msg; } ?>
   </form>
 </div>
@@ -115,6 +110,9 @@ if(isset($_REQUEST['psubmit'])){
                $('#ptotalcost').val(value1 * value2);
             });
          });
+
+
+         document.getElementById('pdop').valueAsDate = new Date();
 </script>
 <?php
 include('includes/footer.php'); 

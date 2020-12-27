@@ -5,7 +5,7 @@ body{
 
 .vertical-nav{
     min-width: 17rem;
-    height: 100%;
+    height: 100vh;
     position: fixed;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
     transition: all 0.3s;
@@ -108,3 +108,23 @@ body::-webkit-scrollbar-thumb {
    }
   
 }
+
+
+.itemnames{
+    height: 150px;
+}
+
+.swal-button {
+   
+    background-color: #2757f5;
+    padding-left: 50px;
+    padding-right: 50px;
+    align-items: center;
+    
+  }
+
+.odr{
+     text-align: center;
+     font-weight: bold;
+      
+  }

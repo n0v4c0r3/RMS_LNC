@@ -23,7 +23,7 @@ session_start();
 
  while($tb = $result->fetch_assoc()){
    ?>
-  <p class=" bg-danger text-white p-2 shadow rounded">Orders for TABLE <?php echo $tb['No']; ?></p>
+  <p class=" bg-danger text-white p-2 shadow rounded odr">Orders for TABLE <?php echo $tb['No']; ?></p>
   
     <table class="table">
         <thead>
@@ -95,8 +95,9 @@ session_start();
                 $sq = "SELECT SUM(psum) as totalbill FROM orders_tb where tableno = '{$tb['No']}'";
                 $sum = $conn->query($sq);
                 $returnsum = mysqli_fetch_array($sum);
+                $mrp = $returnsum['totalbill'];
 
-                echo $returnsum['totalbill'];
+                echo $mrp;
                
                 ?>
 
@@ -104,13 +105,16 @@ session_start();
                
                 <td>
                 
-                <form action="sellproduct.php" method="POST" class="d-inline">
-                <input type="hidden" name="id" value='. $bil["tableno"] .'>
-                <button type="submit" class="btn btn-success" name="issue" value="Issue">
-                <i class="fas fa-handshake"></i>
-                </button>
-                </form>
-       
+                <?php
+                echo '
+                <form action="bill.php" method="POST" class="d-inline">
+                
+                <button type="hidden" class="btn btn-success"  name="id" value='.$bil["tableno"] .'>
+                <i class="fas fa-handshake">
+                </i>
+              
+                </form>';
+                ?>
           
                 </td>
         </tr>

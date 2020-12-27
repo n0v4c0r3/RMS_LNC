@@ -18,7 +18,7 @@ if(isset($_REQUEST['addtablle']))
     $msg = '<div class="text-uppercase text-danger">inser table number</div>';
   }
   else
-    {
+  {
       
       
       $dupsql = "SELECT * from `table_available` where No = '$tno' "; 
@@ -30,6 +30,7 @@ if(isset($_REQUEST['addtablle']))
       }
       else
       {
+
       
         $sqldata = "INSERT INTO `table_available`(`No`) VALUE ('$tno')";
         $conn->query($sqldata);
@@ -38,7 +39,7 @@ if(isset($_REQUEST['addtablle']))
       }
 
   
-    }
+  }
 }
 
 
@@ -67,7 +68,7 @@ echo '
 <table class="table">
         <thead>
             <tr>
-                <th scope="col">Table ID</th>
+                
                 <th scope="col">Available table No.</th>
                 <th scope="col">Action</th>
             </tr>
@@ -76,7 +77,7 @@ echo '
 while( $row = $DATA->fetch_assoc()){
   echo '
             <tr>
-                <td>'.$row["id"].'</td>
+                
                 <th  scope="row">'.$row["No"].'</th>
                 <td>
                 <form action="" method="POST" class="d-inline"><input type="hidden" name="id" value='. $row["id"] .'><button type="submit" class="btn btn-danger" name="delete" value="Delete"><i class="far fa-trash-alt"></i></button></form>
