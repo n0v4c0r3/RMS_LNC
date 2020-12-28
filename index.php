@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
 
   <!-- Font Awesome CSS -->
-  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
@@ -24,29 +24,19 @@
 <body>
   <!-- Start Navigation -->
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark pl-5 fixed-top">
-    <a href="index.php" class="navbar-brand">Late Night Cafe</a>
+    <a href="index.php" class="navbar-brand ">Late Night Cafe</a>
   
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button> 
+
     
-    <div class="collapse navbar-collapse" id="myMenu">
-      <ul class="navbar-nav pl-5 custom-nav">
-    <!--    <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="#Services" class="nav-link">Services</a></li>
-        <li class="nav-item"><a href="#registration" class="nav-link">Registration</a></li>
-        <li class="nav-item"><a href="Requester/RequesterLogin.php" class="nav-link">Login</a></li>
-        <li class="nav-item"><a href="#Contact" class="nav-link">Contact</a></li> -->
-      </ul>
-    </div>
+    
   </nav> <!-- End Navigation -->
 
   <!-- Start Header Jumbotron-->
   <header class="jumbotron back-image" style="background-image: url(images/cafe.jpg);">
-    <div class="myclass mainHeading">
-   <center>  <h1 name = "welcometxt " class="text-uppercase text-light font-weight-bold">Welcome To Late Night Cafe</h1></center> 
-   <center>   <p class="font-italic text-light "> " Come As Friends leave as Family " </p></center> <br> <br>
-   <center>   <a href="Admin/login.php" class="btn btn-success mr-4">Admin Login</a></center>
+    <div class="myclass mainHeading text-center">
+     <h1 name = "welcometxt " class="text-uppercase text-light font-weight-bold welcome">Welcome To Late Night Cafe</h1> 
+     <p class="font-italic text-light "> " Come As Friends leave as Family " </p><br> <br>
+     <a href="Admin/login.php" class="btn btn-success mr-4">Admin Login</a>
     </div>
   </header> <!-- End Header Jumbotron -->
 
@@ -54,7 +44,7 @@
     <!--Introduction Section-->
     <div class="jumbotron">
       <h2 class="text-center">OUR VISION</h2>
-      <p>
+      <p class="text-center">
       Our mission is to be the most sustainable restaurant in JOrhat by sourcing our ingredients locally, supplementing produce with herbs grown on our rooftop garden, and giving back to the community through urban farming education.
   and  to give our customers a place to celebrate life’s special moments by offering the best food, service, and ambiance in Jorhat.
 
@@ -69,15 +59,15 @@
     <h2>We Provide </h2>
     <div class="row mt-4">
       <div class="col-sm-4 mb-4">
-        <a href="#"><i class = "fas fa-burger-soda  fa-8x text-primary"></i></a>
+        <a href=""><i class="fas fa-utensils fa-8x text-success"></i></a>
         <h4 class="mt-4">Best in Class Food</h4>
       </div>
       <div class="col-sm-4 mb-4">
-        <a href="#"><i class="fas fa-truck fa-8x text-primary"></i></a>
+        <a href=""><i class="fas fa-truck fa-8x text-primary"></i></a>
         <h4 class="mt-4">Home Delevery</h4>
       </div>
       <div class="col-sm-4 mb-4">
-        <a href="#"><i class="fas fa-coffee fa-8x text-info"></i></a>
+        <a href=""><i class="fas fa-birthday-cake fa-8x text-danger"></i></a>
         <h4 class="mt-4">Booking For Private Party</h4>
       </div>
     </div>
@@ -98,11 +88,11 @@
         <div class="col-md-6">
           <!-- Start Footer 1st Column -->
           <span class="pr-2">Follow Us: </span>
-          <a href="#" target="_blank" class="pr-2 fi-color"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" target="_blank" class="pr-2 fi-color"><i class="fab fa-twitter"></i></a>
-          <a href="#" target="_blank" class="pr-2 fi-color"><i class="fab fa-youtube"></i></a>
-          <a href="#" target="_blank" class="pr-2 fi-color"><i class="fab fa-google-plus-g"></i></a>
-          <a href="#" target="_blank" class="pr-2 fi-color"><i class="fas fa-rss"></i></a>
+          <a href="#"  class="pr-2 fi-color"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"  class="pr-2 fi-color"><i class="fab fa-twitter"></i></a>
+          <a href="#"  class="pr-2 fi-color"><i class="fab fa-youtube"></i></a>
+          <a href="#"  class="pr-2 fi-color"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#"  class="pr-2 fi-color"><i class="fas fa-rss"></i></a>
         </div> <!-- End Footer 1st Column -->
 
         <div class="col-md-6 text-right">

@@ -1,4 +1,11 @@
 /* Change Brand Font */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.welcome{
+  font-family: cursive;
+}
+
 .navbar-brand {
   font-family: 'Ubuntu', sans-serif;
   font-size: 2em;
