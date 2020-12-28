@@ -19,7 +19,7 @@ $(document).ready(function () {
 
                         datasets: [
                             {
-                                label: "income",
+                               
                                 
                                     backgroundColor: [
                                         'rgba(52, 152, 219,1.0)',
@@ -52,9 +52,8 @@ $(document).ready(function () {
 
                 
                             var bargraph = new Chart(ctx, {
-                                type: 'bar',
+                                type: 'line',
                                 fill: false,
-                                labelString: 'Total SQL Queries',
                                 data: chartdata
                             })
 
