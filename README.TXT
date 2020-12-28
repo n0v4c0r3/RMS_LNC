@@ -1,4 +1,4 @@
-DATABASE NAME: admin_lnc
+DATABASE NAME: admin_lnc [ADMIN_LNC]
 DATABASE BACKUP FOR IMPORT: inside database folder
 
 DEFAULT USERNAME: admin@admin.com
