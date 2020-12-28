@@ -52,7 +52,7 @@ $(document).ready(function () {
 
                 
                             var bargraph = new Chart(ctx, {
-                                type: 'line',
+                                type: 'bar',
                                 fill: false,
                                 labelString: 'Total SQL Queries',
                                 data: chartdata
