@@ -8,17 +8,9 @@ error_reporting(0);
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> LN CAFE </title>
 
-        <link rel="stylesheet" href="../css/all.min.css">
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-            crossorigin="anonymous">
-
+        <link rel="stylesheet" href="../css/all.css">
         <link rel="stylesheet" href="../css/custom1.css">
-        
-
-        <!------ Include the above in your HEAD tag ---------->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     </head>
     <body>
 
@@ -64,7 +56,7 @@ error_reporting(0);
                 </li>
                 <li class="nav-item py-3 <?php if(PAGE == 'table') { echo 'active'; } ?>">
                     <a href="table.php" class="nav-link text-dark">
-                       <i class="fa fa-cocktail mr-3 text-primary fa-fw" aria-hidden="true"></i>
+                       <i class="fas fa-chair mr-3 text-primary fa-fw" aria-hidden="true"></i>
                         TABLE
                     </a>
                 </li>

@@ -86,8 +86,8 @@ if(isset($_REQUEST['psubmit'])){
     </div>
     
   <div class="text-center">
-    <button type="submit" class="btn btn-success px-5" id="psubmit" name="psubmit">Submit</button>
-    <a href="orders.php" class="btn btn-primary">Close</a>
+    <button type="submit" class="btn btn-success px-5" id="psubmit" name="psubmit">Add Food</button>
+    <a href="orders.php" class="btn btn-primary">BACK TO ORDERS</a>
   </div>
     <?php if(isset($msg)) {echo $msg; } ?>
   </form>

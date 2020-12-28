@@ -17,6 +17,7 @@ session_start();
  $sql = "SELECT sum(totalbill) FROM complete_order";
  $result = $conn->query($sql);
  $row = mysqli_fetch_row($result);
+
  $revnue = $row[0];
 
  $sql = "SELECT * FROM staff_tb";
@@ -40,7 +41,7 @@ session_start();
             <div
                 class="card text-white bg-success mb-3"
                 style="max-width: 18rem; border-radius:5px; border: 0; background: rgb(119,96,150);
-background: linear-gradient(90deg, rgba(119,96,150,1) 0%, rgba(111,130,149,1) 100%);">
+background: linear-gradient(to left bottom, #00e75c, #00ed55, #00f34d, #00f943, #00ff37);">
                 <div class="card-header">TOTAL ORDERS</div>
                 <div class="card-body">
                     <h4 class="card-title">
@@ -54,7 +55,7 @@ background: linear-gradient(90deg, rgba(119,96,150,1) 0%, rgba(111,130,149,1) 10
             <div
                 class="card text-white bg-dark mb-3"
                 style="max-width: 18rem; border-radius:5px; border: 0; background: rgb(64,65,255);
-background: linear-gradient(90deg, rgba(64,65,255,1) 0%, rgba(57,157,255,1) 100%);">
+background:  linear-gradient(to right top, #163eff, #4239fd, #5a33fa, #6d2bf7, #7d22f4);">
                 <div class="card-header">Total Revenue</div>
                 <div class="card-body">
                     <h4 class="card-title">

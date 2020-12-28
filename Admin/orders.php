@@ -14,10 +14,10 @@ session_start();
 
 <div class="page-content p-5" id="content">
     <div class="py-5">
-        <a class="btn btn-primary box px-5" href="addorder.php">
-            <i class="fas fa-plus"></i>ADD ORDERS</a>
+        <a class="btn btn-primary box px-3" href="addorder.php">
+            <i class="fas fa-plus"></i> ADD ORDERS</a>
     </div>
-<?php
+  <?php
  $sql = "SELECT * FROM table_available";
  $result = $conn->query($sql);
 
@@ -67,14 +67,14 @@ session_start();
 
         echo '
         
-        <table class="table">
-        <p class=" bg-primary text-white p-2">BILLING</p>
+        <table class="table mt-1 mb-5">
+        <p class=" bg-dark text-white p-2">BILLING</p>
         <thead>
             <tr>
                 <th scope="col">TABLE NO</th>
                 <th scope="col">DOP</th>
                 <th scope="col">Total</th>
-                <th scope="col">BILL</th>
+                <th scope="col">Confirm </th>
             </tr>
         </thead>
         <tbody>';
@@ -109,8 +109,8 @@ session_start();
                 echo '
                 <form action="bill.php" method="POST" class="d-inline">
                 
-                <button type="hidden" class="btn btn-success"  name="id" value='.$bil["tableno"] .'>
-                <i class="fas fa-handshake">
+                <button type="hidden" class="btn btn-success px-5"  name="id" value='.$bil["tableno"] .'>
+                <i class="fas fa-cart-arrow-down">
                 </i>
               
                 </form>';

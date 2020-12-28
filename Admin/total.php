@@ -48,9 +48,9 @@ session_start();
           </form>
 
           <form action="invoice.php" class="d-inline" method="POST">
-          <button type="hidden" class="btn btn-success"  name="pbill" value='.$row["pid"] .'>
-                <i class="fas fa-handshake">
-                </i></form>
+          <button type="hidden" class="btn btn-danger"  name="pbill" value='.$row["pid"] .'>
+                <i class="fas fa-file-download">
+                </i> Download Bill</form>
           </td>
       </tr>';
     }
