@@ -32,7 +32,7 @@ session_start();
      $datareturn[] =$row;
  }
 
- print json_encode($datareturn);
+//  print json_encode($datareturn);
 
 ?>
 <div class="page-content p-5 shadow-sm px-4" id="content">
