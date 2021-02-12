@@ -97,7 +97,7 @@
 
         <div class="col-md-6 text-right">
           <!-- Start Footer 2nd Column -->
-          <small> Designed by Debasish Bora & Kawstabh Dutta &copy; 2020.
+          <small> Designed by Debasish Bora &copy; 2020.
           </small>
         </div> <!-- End Footer 2nd Column -->
       </div> <!-- End Footer Row -->
