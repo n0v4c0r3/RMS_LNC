@@ -13,8 +13,7 @@ if(isset($_POST['pbill']))
 
     $Json_item = $row["pitems"];
     $subtotal = $row["totalbill"];
-    $bname = $row["bname"];
-    $invoiceid  = $row["pid"];
+    $bname = $row["invoiceid"];
     $dop = $row["pdop"];
     $tno = $row["tableno"];
      
@@ -70,7 +69,7 @@ if(isset($_POST['pbill']))
                                 </div>
 
                                 <div class="col-md-6 text-right">
-                                    <p class="font-weight-bold ">Invoice #<?php echo $invoiceid; ?></p>
+                                    <p class="font-weight-bold ">Invoice #<?php echo $bname; ?></p>
                                     <p class="text-muted">Date:
                                         <?php echo $dop; ?></p>
                                 </div>
@@ -80,12 +79,8 @@ if(isset($_POST['pbill']))
 
                             <div class="row pb-0 px-3">
                                 <div class="col-md-6">
-                                    <p class="font-weight-bold mb-4">Client Information</p>
                                     <p class="mb-1 font-weight-bold">Table No:
                                         <?php echo $tno; ?></p>
-                                    <p class="mb-1 ">
-                                        <?php echo $bname; ?></p>
-                                    <p class=" mb-4">Jorhat, Assam ,785001</p>
 
                                 </div>
 
