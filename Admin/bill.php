@@ -134,7 +134,7 @@ if(isset($_REQUEST['id'])){
             <input type="hidden" name="itemjson" id="itm" value="">
             <div class="text-center">
             <input type="submit" class="btn btn-success" id="pupdate" name="pupdate" onclick="swaltrigger()" value="CONFIRM ORDER">
-             <a href="orders.php" class="btn btn-danger">CANCEL</a>
+             <a href="orders.php" class="btn btn-danger">Edit </a>
             </div>
           
            

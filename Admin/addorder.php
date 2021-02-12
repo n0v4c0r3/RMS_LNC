@@ -9,12 +9,32 @@ session_start();
  } else {
   echo "<script> location.href='login.php'; </script>";
  }
+
+
+//  table warning msg
+$warningtbl = '';
+ $query = "SELECT * from `table_available` ";
+ $out = $conn->query($query);
+
+ if($out->num_rows > 0)
+ {
+  $warningtbl = '';
+ }
+ else 
+ {
+   $warningtbl = '<p class="text-danger">No table added to Resturant , Add a table to accept order <a href="table.php" class="text-primary">Add Now</a></p>';
+ }
+
+ 
 if(isset($_REQUEST['psubmit'])){
+
  // Checking for Empty Fields
  if(($_REQUEST['pname'] == "") || ($_REQUEST['pdop'] == "") || ($_REQUEST['pqty'] == "") || ($_REQUEST['tableno'] == "")){
-  // msg displayed if required field missing
+  
+ // msg displayed if required field missing
   $msg = '<div class="alert alert-warning col-sm-6 ml-5 mt-2" role="alert"> Fill All Fileds </div>';
  } else {
+
   // Assigning User Values to Variable
   $pname = $_REQUEST['pname'];
   $pdop = $_REQUEST['pdop'];
@@ -32,8 +52,6 @@ if(isset($_REQUEST['psubmit'])){
 
    $sql = "INSERT INTO `orders_tb`( `pname`, `pdop`, `pqty`, `tableno`, `psellingcost`, `psum`) VALUES ('$pname', '$pdop', '$pqty' , '$tableN', '$price',  '$psum' )";
    
-  
-
    if($conn->query($sql) == TRUE){
     // below msg display on form submit success
     $msg = '<div class="alert alert-success col-sm-6 ml-5 mt-2" role="alert"> Added Successfully </div>';
@@ -49,9 +67,9 @@ if(isset($_REQUEST['psubmit'])){
   <form action="" method="POST">
 
     <div class="form-group">
-      <!-- <label for="pname">item Name</label> -->
-      <!-- <input type="text" class="form-control" id="pname" name="pname"> -->
-      <select id="pname" name="pname">
+    
+      <input type="text" id="pname" name="pname" list="menulist" required>
+      <datalist id="menulist">
         <?php  
         $itemsql = "select * from `menu_tb`";
         $data = $conn->query($itemsql);
@@ -59,7 +77,7 @@ if(isset($_REQUEST['psubmit'])){
         echo '<option name="itm">'. $row["pname"].'</option>'; 
         } 
         ?>
-      </select>
+      </datalist>
       
     </div>
 
@@ -83,10 +101,12 @@ if(isset($_REQUEST['psubmit'])){
         }
         ?>
       </select>
+      <?php echo $warningtbl;?>
+      
     </div>
     
   <div class="text-center">
-    <button type="submit" class="btn btn-success px-5" id="psubmit" name="psubmit">Add Food</button>
+    <button type="submit" class="btn btn-success px-5" id="psubmit" name="psubmit">Add Order</button>
     <a href="orders.php" class="btn btn-primary">BACK TO ORDERS</a>
   </div>
     <?php if(isset($msg)) {echo $msg; } ?>

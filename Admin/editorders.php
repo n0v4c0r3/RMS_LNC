@@ -50,13 +50,13 @@ $sql = "SELECT * FROM orders_tb WHERE pid = {$_REQUEST['id']}";
     </div>
     <div class="form-group">
       <label for="pname">Name</label>
-      <!-- <input type="text" class="form-control" id="pname" name="pname" value="<?php if(isset($row['pname'])) {echo $row['pname']; }?>"> -->
+     <?php if(isset($row['pname'])) {echo $row['pname']; }?>
       <select id="pname" name="pname">
         <?php  
         $itemsql = "select * from `menu_tb`";
         $data = $conn->query($itemsql);
-        while($row = $data->fetch_assoc()){
-        echo '<option name="itm">'. $row["pname"].'</option>'; 
+        while($row1 = $data->fetch_assoc()){
+        echo '<option name="itm">'. $row1["pname"].'</option>'; 
         } 
         ?>
       </select>
@@ -67,12 +67,11 @@ $sql = "SELECT * FROM orders_tb WHERE pid = {$_REQUEST['id']}";
     </div>
     <div class="form-group">
       <label for="pava">Quantity</label>
-      <input type="number" class="form-control" id="pqty" name="pqty" value="<?php if(isset($row['pqty'])) {echo $row['pqty']; }?>"
-        onkeypress="isInputNumber(event)">
+      <input type="number" class="form-control" id="pqty" name="pqty" value="<?php if(isset($row['pqty'])) {echo $row['pqty']; }?>">
     </div>
     <div class="form-group">
       <label for="ptable">Table NO</label>
-      <!-- <input type="number" class="form-control" id="ptable" name="ptable" value="<?php if(isset($row['tableno'])) {echo $row['tableno']; }?>"> -->
+     <?php if(isset($row['tableno'])) {echo $row['tableno']; }?>
       <select id="pname" name="ptable">
         <?php  
         $itemsql = "select * from `table_available`";

@@ -13,34 +13,35 @@ session_start();
 ?>
 
 <div class="page-content p-5" id="content">
-    <div class="py-5">
-        <a class="btn btn-primary box px-3" href="addorder.php">
-            <i class="fas fa-plus"></i> ADD ORDERS</a>
-    </div>
+  <div class="py-5">
+    <a class="btn btn-primary box px-3" href="addorder.php">
+      <i class="fas fa-plus"></i> ADD ORDERS</a>
+  </div>
+
   <?php
  $sql = "SELECT * FROM table_available";
  $result = $conn->query($sql);
 
  while($tb = $result->fetch_assoc()){
    ?>
-  <p class=" bg-danger text-white p-2 shadow rounded odr">Orders for TABLE <?php echo $tb['No']; ?></p>
-  
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Product ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">DOP</th>
-                <th scope="col">price Each</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Total</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
+  <p class=" bg-primary text-white p-2 mt-3 shadow rounded odr">Orders for TABLE <?php echo $tb['No']; ?></p>
+  <div class="card">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Product ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">DOP</th>
+        <th scope="col">price Each</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
 
-        <tbody>
+    <tbody>
 
-          <?php
+      <?php
 
         $sql2 = "SELECT * FROM orders_tb where tableno = '{$tb['No']}'";
         $DATA = $conn->query($sql2);
@@ -67,7 +68,7 @@ session_start();
 
         echo '
         
-        <table class="table mt-1 mb-5">
+        <table class="table table-striped mt-1 mb-5">
         <p class=" bg-dark text-white p-2">BILLING</p>
         <thead>
             <tr>
@@ -84,13 +85,13 @@ session_start();
         $bil = $DATA2->fetch_assoc();
         
         ?>
-        <tr>
-          <th scope="row"><?php echo $bil['tableno']; ?></th>
-                <td><?php echo $bil['pdop'] ?></td>
+      <tr>
+        <th scope="row"><?php echo $bil['tableno']; ?></th>
+        <td><?php echo $bil['pdop'] ?></td>
 
-                <td>
-                  
-                <?php 
+        <td>
+
+          <?php 
                 
                 $sq = "SELECT SUM(psum) as totalbill FROM orders_tb where tableno = '{$tb['No']}'";
                 $sum = $conn->query($sq);
@@ -101,11 +102,11 @@ session_start();
                
                 ?>
 
-                </td>
-               
-                <td>
-                
-                <?php
+        </td>
+
+        <td>
+
+          <?php
                 echo '
                 <form action="bill.php" method="POST" class="d-inline">
                 
@@ -115,24 +116,21 @@ session_start();
               
                 </form>';
                 ?>
-          
-                </td>
-        </tr>
-        
-        <?php
 
+        </td>
+      </tr>
 
-        ?>
-        </tbody>
-    </table> <?php
-  
-
-
-
-
+      <?php
+      ?>
+    </tbody>
+  </table>
+  </div> <?php
     ?>
-      <?php }
+    
 
+  <?php 
+  
+      }
 
     if(isset($_REQUEST['delete'])){
       $sql = "DELETE FROM orders_tb WHERE pid = {$_REQUEST['id']}";
@@ -147,8 +145,8 @@ session_start();
 
       
 ?>
-</div>
 
+</div>
 <?php
 include('includes/footer.php'); 
 ?>

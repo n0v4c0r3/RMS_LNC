@@ -41,8 +41,19 @@ session_start();
         <td>'.$row["poriginalcost"].'</td>
 
         <td>
-          <form action="editmenuitem.php" method="POST" class="d-inline"> <input type="hidden" name="id" value='. $row["id"] .'><button type="submit" class="btn btn-info" name="view" value="View"><i class="fas fa-pen"></i></button></form>  
-          <form action="" method="POST" class="d-inline"><input type="hidden" name="id" value='. $row["id"] .'><button type="submit" class="btn btn-secondary" name="delete" value="Delete"><i class="far fa-trash-alt"></i></button></form>
+          <form action="editmenuitem.php" method="POST" class="d-inline"> 
+          <input type="hidden" name="id" value='. $row["id"] .'>
+          <button type="submit" class="btn btn-info" name="view" value="View">
+          <i class="fas fa-pen"></i>
+          </button>
+          </form>  
+
+          <form action="" method="POST" class="d-inline">
+          <input type="hidden" name="id" value='. $row["id"] .'>
+          <button type="submit" class="btn btn-secondary" name="delete" value="Delete">
+          <i class="far fa-trash-alt"></i>
+          </button>
+          </form>
 
           </td>
       </tr>';
