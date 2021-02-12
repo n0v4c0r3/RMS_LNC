@@ -18,7 +18,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/custom.css">
 
-  <title>OSMS</title>
+  <title>LNC</title>
 </head>
 
 <body>
