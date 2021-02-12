@@ -20,7 +20,7 @@ session_start();
 <div class="page-content p-5 " id="content">
   <div class="mt-5 text-center">
     <!--Table-->
-    <p class=" bg-primary text-white p-2">MENU</p>
+    <p class=" bg-primary text-white p-2">Orders & Billing</p>
 
     <div class="row">
       <div class="input-daterange">
