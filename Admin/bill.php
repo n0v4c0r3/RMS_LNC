@@ -9,16 +9,36 @@ session_start();
  } else {
   echo "<script> location.href='login.php'; </script>";
  }
+    // genrete invoice id
+
+    $query = "SELECT `invoiceid` from `complete_order` ORDER BY `invoiceid` desc";
+    $res = $conn->query($query);
+
+    $rw = $res->fetch_array();
+    $lastid = $rw["invoiceid"];
+
+    if(empty($lastid))
+    {
+        $number = "LNC-00000001";
+    }
+    else
+    {
+        $idd = str_replace("LNC-","",$lastid);
+        $id = str_pad($idd + 1 , 7,0, STR_PAD_LEFT);
+        $number = 'LNC-' . $id;
+    }
 
  if(isset($_POST['pupdate'])){
 
   $tid = $_REQUEST['tid'];
-  $cname = $_REQUEST['Bname'];
+
+  $ordid = $_REQUEST['ordid'];
+
   $dop = $_REQUEST['pdop'];
   $mrp = $_REQUEST['mrp'];
   $ItmJSN = $_REQUEST['itemjson'];
 
-  $sql = "INSERT INTO `complete_order`(`bname`, `pdop`,`pitems`,`tableno`, `totalbill`) VALUES ('$cname','$dop','$ItmJSN','$tid','$mrp')";
+  $sql = "INSERT INTO `complete_order`(`invoiceid`, `pdop`,`pitems`,`tableno`, `totalbill`) VALUES ('$ordid','$dop','$ItmJSN','$tid','$mrp')";
   if($conn->query($sql) == true)
   {
    
@@ -27,13 +47,13 @@ session_start();
       $msg = "ORDER CONFIRMED";
       header("Location: total.php"); 
     }
-   
-    
+     
   
   }
 
  
 ?>
+
 
 <div class="page-content p-5 " id="content">
     <?php
@@ -63,8 +83,8 @@ if(isset($_REQUEST['id'])){
             </div>
 
             <div class="form-group">
-                <label for="pname">Buyers Name</label>
-                <input type="text" class="form-control" id="pname" name="Bname" value="">
+                <label for="pname">Order ID </label>
+                <input type="text" class="form-control" id="ordid" name="ordid" value="<?php echo $number; ?>" readonly>
             </div>
 
             <div class="form-group">
@@ -73,8 +93,7 @@ if(isset($_REQUEST['id'])){
                     type="date"
                     class="form-control"
                     id="pdop"
-                    name="pdop"
-                    value="<?php if(isset($row['pdop'])) {echo $row['pdop']; }?>">
+                    name="pdop" >
             </div>
             <div class="form-group ">
                 <label for="poriginalcost">MRP
@@ -114,7 +133,7 @@ if(isset($_REQUEST['id'])){
             </div>
             <input type="hidden" name="itemjson" id="itm" value="">
             <div class="text-center">
-            <input type="submit" class="btn btn-success" id="pupdate"name="pupdate" onclick="swaltrigger()" value="CONFIRM ORDER">
+            <input type="submit" class="btn btn-success" id="pupdate" name="pupdate" onclick="swaltrigger()" value="CONFIRM ORDER">
              <a href="orders.php" class="btn btn-danger">CANCEL</a>
             </div>
           
@@ -132,7 +151,8 @@ if(isset($_REQUEST['id'])){
 <?php
 include('includes/footer.php'); 
 ?>
-<!-- store items details as array -->
+<!-- store items details as array to help genrate bill or fetch as table -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
    <script>
     var array = [];
@@ -152,4 +172,8 @@ include('includes/footer.php');
     
     document.getElementById("itm").value = itemdetails;
     
+
+    // set auto date
+    let today = new Date().toISOString().substr(0, 10);
+    document.querySelector("#pdop").value = today;
 </script>
