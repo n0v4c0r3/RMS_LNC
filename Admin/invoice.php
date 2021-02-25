@@ -142,17 +142,20 @@ if(isset($_POST['pbill']))
                         console.log(invoice);
                         console.log(window);
 
-                        var opt = {
+                        var opt = 
+                            {
                             margin: 0,
                             filename: 'LncInvoice00.pdf',
                             image: {
                                 type: 'jpeg',
                                 quality: 1
                             },
-                            html2canvas: {
+                            html2canvas: 
+                            {
                                 scale: 1
                             },
-                            jsPDF: {
+                            jsPDF: 
+                            {
                                 unit: 'mm',
                                 format: 'a4',
                                 orientation: 'portrait'
