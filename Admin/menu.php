@@ -26,7 +26,7 @@ session_start();
         <th scope="col">Product ID</th>
         <th scope="col">Name</th>
         <th scope="col">DOP</th>
-        <th scope="col">Available</th>
+      
         <th scope="col">Price</th>
         <th scope="col">Action</th>
       </tr>
@@ -37,7 +37,7 @@ session_start();
         <th scope="row">'.$row["id"].'</th>
         <td>'.$row["pname"].'</td>
         <td>'.$row["pdop"].'</td>
-        <td>'.$row["pava"].'</td>
+        
         <td>'.$row["poriginalcost"].'</td>
 
         <td>
